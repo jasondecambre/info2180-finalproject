@@ -3,61 +3,150 @@
 window.onload = function()
 {
     console.log("Window loaded");
-    var lookupresult = document.getElementById("result");
+    var contentbox = document.getElementById("content");
     var anchorlist = document.getElementsByTagName("a");
     console.log(anchorlist);
     Array.from(anchorlist).forEach(function (anchor)
     {
-        
         anchor.addEventListener("click", function(event)
         {
             event.preventDefault;
-            var filename = "";
-            var source = event.target.id;
+            var source = event.target.href;
             console.log(source);
-            if (source==id1)
+            if (source=="home.php")
             {
-                source = "Homepage";
-            }
-            else if(source==id2)
-            {
-                source = "adduserpage";
-            }
-            else if (source==id3)
-            {
-                source = "newissuepage";
-            }
-            else (source==id3)
-            {
-                source = "logout";
-            }
-            fetch(`${source}`)
+                fetch("home.php")
                 .then(console.log("Fetching"))
                 .then(response => response.text())
-                .then(data => lookupresult.innerHTML = data)
-                //add button listners here
+                .then(data => contentbox.innerHTML = data)
                 .catch(error => 
                 {
                     console.log("There was an error");
                     console.log(error);
                 });
+                var button1 = contentbox.getElementById("");
+                button1.addEventListener("click", createIssueButtonClick)
+            }
+            else if(source=="user.php")
+            {
+                fetch("user.php")
+                .then(console.log("Fetching"))
+                .then(response => response.text())
+                .then(data => contentbox.innerHTML = data)
+                .catch(error => 
+                {
+                    console.log("There was an error");
+                    console.log(error);
+                });
+                var form = contentbox.getElementById("");
+                form.addEventListener('submit', function (element) 
+                {
+                    var firstname = form.getElementById("").value.trim();
+                    var lastname = form.getElementById("").value.trim();
+                    var password = form.getElementById("").value.trim();
+                    var email = form.getElementById("").value.trim();
+                    if (isEmpty(firstname) || isEmpty(lastname) || isEmpty(password) || isEmpty(email))
+                    {
+                        myform.getElementById("message").innertext = "Please complete the form before submitting.";
+                        element.preventDefault();
+                    }
+                    if(!loginUser(email, password))
+                    {
+                        element.preventDefault();
+                    }
+                });
+            }
+            else if (source=="create.php")
+            {
+                fetch("create.php")
+                    .then(console.log("Fetching"))
+                    .then(response => response.text())
+                    .then(data => contentbox.innerHTML = data)
+                    .catch(error => 
+                    {
+                        console.log("There was an error");
+                        console.log(error);
+                    });
+                var form = contentbox.getElementById("")
+                form.addEventListener('submit', function (element) 
+                {
+                    var title = form.getElementById("").value.trim();
+                    var description = form.getElementById("").value.trim();
+                    var assignedTo = form.getElementById("").value
+                    var type = form.getElementById("").value;
+                    var priority = form.getElementById("").value;
+                    if (isEmpty(title) || isEmpty(description) || isEmpty(assignedTo) || isEmpty(type) || isEmpty(priority))
+                    {
+                        myform.getElementById("message").innertext = "Please complete the form before submitting.";
+                        element.preventDefault();
+                    }
+                });
+            }
+            else (source==id3)
+            {
+                source = "logout";
+            }
         });
     });
-};
+    var homebutton = contentbox.getElementById("");
+    homebutton.addEventListener("click", createIssueButtonClick)
+    // should be similar to home.php fetch button event
 
-function login(event)
+    function createIssueButtonClick()
+    {
+        // Could I just trigger the navigation link here
+        fetch("create.php")
+            .then(console.log("Fetching"))
+            .then(response => response.text())
+            .then(data => contentbox.innerHTML = data)
+            .catch(error => 
+            {
+                console.log("There was an error");
+                console.log(error);
+            });
+        var form = contentbox.getElementById("")
+        form.addEventListener('submit', function (element) 
+        {
+            var title = form.getElementById("").value.trim();
+            var description = form.getElementById("").value.trim();
+            var assignedTo = form.getElementById("").value
+            var type = form.getElementById("").value;
+            var priority = form.getElementById("").value;
+            if (isEmpty(title) || isEmpty(description) || isEmpty(assignedTo) || isEmpty(type) || isEmpty(priority))
+            {
+                myform.getElementById("message").innertext = "Please complete the form before submitting.";
+                element.preventDefault();
+            }
+        });
+    
+    }
+
+    
+
+}
+function loginUser(email, password)
 {
-    event.preventDefault();
-    clearErrors();
-    var emailexpression = "expression";
-    var email = document.getElementById("email").value.trim();
-    var password = document.getElementById("password").value.trim();
+    var passwordexpression = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+    var emailexpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    //Double check regex
     if (emailexpression.test(email))
     {
-
+        console.log("Valid email");
+        if (passwordexpression.test(password) && password.length >=8)
+        {
+            console.log("Valid password");
+            return true;
+        }
+        else
+        {
+            console.log("Invalid password");
+            return false;
+        }        
     }
     else
     {
-        alert("Email entered incorrectly")
-    }
+        console.log("Invalid email");
+        return false;
+    }    
 }
+
