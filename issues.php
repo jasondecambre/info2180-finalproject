@@ -2,12 +2,12 @@
 <html>
 <body>
 
-<div class="sidenav">
+<nav>
   <a href="#">Home</a>
   <a href="user.php">Add User</a>
   <a href="issues.php">New Issue</a>
   <a href="logout.php">Logout</a>
-</div>
+</nav>
 
 <h1>New Issue</h1>
 

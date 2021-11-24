@@ -2,13 +2,44 @@
 <html>
 <body>
 
-<div class="sidenav">
+<nav>
   <a href="home.php">Home</a>
   <a href="user.php">Add User</a>
   <a href="create.php">New Issue</a>
   <a href="logout.php">Logout</a>
-</div>
+</nav>
 
+<main>
+    <form method="POST">
+        <h1>New User</h1>
+        <label for="fname"> Firstname</label>
+        <br>
+        <input id="fname" type="text" name="fame" class="input"/> 
+        <br>
+        <br> 
+        <label for="lname"> Lastname</label> 
+        <br>
+        <input id="lname" type="text" name="lame" class="input"/> 
+        <br>
+        <br>
+        <label for="password"> Password</label> 
+        <br>
+        <input id="password" type="text" name="password" class="input"/> 
+        <br>
+        <br>
+        <label for="email"> Email</label> 
+        <br>
+        <input id="email" type="text" name="email" class="input"/>
+        <br>
+        <br>
+        <button type="submit" class="btn" id = "btn" name="addBTN"> Submit</button>
+    </form>
+</main>
+
+</body>
+</html>
+
+<!--
 <h1>New User</h1>
 
 <p>Add a new user to the database</p>
@@ -44,7 +75,4 @@
     
     <button type="submit" class="btn">Submit</button>
 </form>
-
-
-</body>
-</html>
+-->
