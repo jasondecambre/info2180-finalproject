@@ -1,14 +1,3 @@
-<?php session_start();
-    require_once "db.php";
-	if (!isset($_SESSION['logined_user']))
-    {
-    header('Location: logout.php');
-    }
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-  $allusers = $conn->query("SELECT * FROM users");
-  $allusersfinal = $allusers->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html>
 <body>
@@ -24,7 +13,7 @@
 
 <p>Create new Issue</p>
 
-<form action="addissue.php" method="post">
+<form action="insertissue.php" method="post">
 
 <p>Title</p>
     <div class="form-group">

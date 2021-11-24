@@ -26,7 +26,7 @@
 <p>Add a new user to the database</p>
 
 
-<form action="#" method="post">
+<form action="insertuser.php" method="post">
 
     <p>First Name</p>
     <div class="form-group">

@@ -13,7 +13,7 @@ USE bugme;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-  id INT UNSIGNED NOT NULL,
+  id INT UNSIGNED NOT NULL primary key,
   firstname VARCHAR(32) DEFAULT NULL,
   lastname VARCHAR(32) DEFAULT NULL,
   password VARCHAR(32) NOT NULL,

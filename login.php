@@ -9,17 +9,28 @@ session_start();
 
 require 'db.php';
 
+try{
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+if($conn){
+    echo "Connected\n";
+}
+} catch(PDOException $e){
+    echo "FAILED DBCONN";
+}
 
 $email= filter_input(INPUT_POST,"email",FILTER_SANITIZE_EMAIL); 
 $email= filter_var($email,FILTER_VALIDATE_EMAIL); // extra step to make sure the email is ok
 $password= filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING);
 
-$pwsearch=$conn->query("SELECT password FROM users WHERE email='$email'");
-$pw= $pwsearch->fetch(PDO::FETCH_ASSOC);
 
-if($pw == $password){
-    $details=$conn->query("SELECT * FROM users WHERE password='$pw' AND email='$email'");    
+$pwsearch=$conn->query("SELECT password FROM users WHERE email='$email'");
+$pw= $pwsearch->fetch(PDO::FETCH_ASSOC); 
+print_r($pw);
+$pw2 = $pw['password'];
+
+
+if($pw['password'] == $password){
+    $details=$conn->query("SELECT * FROM users WHERE password='$pw2' AND email='$email'");    
     $result= $details->fetch(PDO::FETCH_ASSOC);
     if(isset($result)){        
         $_SESSION['logined_user']=$result['email'];

@@ -22,28 +22,28 @@ $creatornm= $findcreator->fetch(PDO::FETCH_ASSOC);
     <body>
         <div class="container">
             <header>
-                <img src = "https://lh5.googleusercontent.com/D93o9lawUcDSbkREe5uhbMRnlelySCnuheiFfeUz5F2UPUvDW1Qfdujq4hT0v3waUhe0XX4s-PlJun0UemnuSsZqs9s6wbm-4z-zosxmukyr7rBIdvHtRCvDUuRwuKd49kb1OnBF">
+                
                 <h1> BugMe Issue Tracker </h1>
             </header>
             <div class = "sidenav">
                 <ul>
                     <div class = "home">
-                        <img src="MdiHome.svg">
+                        
                         <a href="dashboard.php">Home</a> 
                     </div>
 
                     <div class = "adduser">
-                        <img src = "IcBaselineAddCircle.svg">
+                        
                         <a href="addusers.php">Add User</a> 
                     </div>
 
                     <div class = "newissue">
-                        <img src = "MdiAccountPlus.svg">
+                       
                         <a href="createissue.php">New Issue</a> 
                     </div>
                     <div class = "logout">
-                        <img src = "MdiPower.svg">
-                        <a href="userlogout.php">Logout</a>
+                    
+                        <a href="logout.php">Logout</a>
 
                     </div>
                 </ul>  

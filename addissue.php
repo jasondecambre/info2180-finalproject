@@ -14,6 +14,7 @@ try{
     if ($insert){
         $myids = $conn->query("SELECT id FROM users WHERE CONCAT(firstname,' ',lastname)='$assignto' ");
         $myidsfinals = $myids->fetch(PDO::FETCH_ASSOC);
+        echo $myidsfinals;
         if(isset($myidsfinals)){
             $assignid=$myidsfinals['id'];
         }

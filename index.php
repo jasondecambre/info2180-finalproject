@@ -20,7 +20,7 @@
             </header>
             <div id="login-form">
                 <h1 id="login-head">User Login</h1>
-                <form id="login" method="post" onsubmit="return Vali()">
+                <form id="login" method="post" onsubmit="return Vali()" action="login.php">
                     <label> Email: </label>
                     <br>
                     <input type="email" name="email" id="email">
