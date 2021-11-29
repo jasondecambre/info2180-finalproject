@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
+<head><link rel="stylesheet" href=styles.css></head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
 
-<header>BugMe Issue Tracker</header><br><br>
+<header>BugMe Issue Tracker</header>
 
-<!--The following will be styled with css and be a constant sidebar with links to all necessary pages
-It will not be available on the login or logout screens-->
-
-<nav>
-  <a href="home.php">Home</a>
-  <a href="user.php">Add User</a>
-  <a href="create.php">New Issue</a>
-  <a href="logout.php">Logout</a>
+<nav id="left-sidebar" class="nav-con">
+    <b><a href="home.php" id="home"><i class="fa fa-home fa-fw"></i> Home</a></b>
+    <b><a href="user.php" id="user"><i class="fa fa-user-plus fa-fw"></i > Add User</a></b>
+    <b><a href="create.php" id="issue"><i class="fa fa-plus-circle fa-fw"></i> New Issue</a></b>
+    <b><a href="logout.php" id="logout"><i class="fa fa-power-off fa-fw"></i> Logout</a></b>
 </nav>
 
-
 <main>
-    <h1>Create Issue</h1>
-        <label for="title"> Title</label>
+    <form>
+    <h1>Create Issue</h1>  
+        <br>
+        <label for="title">Title</label>
         <br>
         <input id="title" type="text" name="title" class="input" /> 
         <br>
         <br>
         <label for="description"> Description</label> 
         <br>
-        <input id="description" type="text" name="description" class="description" /> 
+        <textarea id="description" type="text" name="description" class="description"></textarea> 
         <br>
         <br>
-        <label for="assigned"> Assigned To</label> 
+        <label for="assigned"> Assigned To:</label> 
         <br>
         <select name="assigned" id="assigned"> 
         <br>
@@ -56,45 +57,8 @@ It will not be available on the login or logout screens-->
         <br>
         <br>     
         <button type="submit" class="btn"> Submit</button>
+    </form>
 </main>
-
 
 </body>
 </html>
-
-<!--
-<p>Issues</p>
-
-<form action="#" method="post">
-
-    <p>Title</p>
-    <div class="form-group">
-        <input type="title" name="title" id="title">
-    </div>
-
-    <p>Description</p>
-    <div class="form-group">
-        <input type="description" name="description" id="description">
-    </div>
-
-    <br>
-
-    <p>Password</p>
-    <div class="form-group">
-        <input type="password" name="password" id="password">
-    </div>
-
-    <br>
-
-    <p>Email</p>
-    <div class="form-group">
-        <input type="email" name="email" id="email">
-    </div>
-
-    <br>
-    
-    <button type="submit" class="btn">Submit</button>
-</form>
-
-    <br> 
--->
