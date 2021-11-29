@@ -15,7 +15,7 @@
 </nav>
 
 <main>
-    <form method="POST">
+    <form method="POST" id="new-user-form">
         <h1>New User</h1>
         <br>
         <label for="fname"> Firstname</label>
@@ -38,6 +38,7 @@
         <input id="email" type="text" name="email" class="input"/>
         <br>
         <br>
+        <p id="new-user-message"></p>
         <button type="submit" class="btn" id = "btn" name="addBTN"> Submit</button>
     </form>
 </main>

@@ -15,7 +15,7 @@
 </nav>
 
 <main>
-    <form>
+    <form id="create-issue-form">
     <h1>Create Issue</h1>  
         <br>
         <label for="title">Title</label>
@@ -55,7 +55,8 @@
             <option value="Critical">Critical</option>
         </select> 
         <br>
-        <br>     
+        <br>  
+        <p id="create-issue-message"><p>   
         <button type="submit" class="btn"> Submit</button>
     </form>
 </main>
