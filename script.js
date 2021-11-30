@@ -53,15 +53,15 @@ window.onload = function()
                                 markedClosed.addEventListener("click", function()
                                 {
                                     const date = new Date();
-                                //date.toDateString();
-                                // Update issue in database
+                                    //date.toDateString();
+                                    // Update issue in database
                                     console.log("Marked as close");
                                 });
                                 markedInProgress.addEventListener("click", function()
                                 {
                                     const date = new Date();
-                                //date.toDateString();
-                                //Update issue in database
+                                    //date.toDateString();
+                                    //Update issue in database
                                     console.log("Marked as in progress");
                                 });
                                 event.preventDefault();
@@ -73,8 +73,8 @@ window.onload = function()
                         {
                             filter.addEventListener("click", function(event)
                             {
-                                //Fetch the homepage or the table data file based on each filter will need to check source
-                                // Is status in the table a button of coloured cell
+                                //Fetch the table data file based on each filter will need to check source
+                                // Is status in the table a button of coloured cell?
                                 console.log(event.target.id);
                                 fetch(`filename.php?filter=${event.target.id}`)
                                     .then(console.log("Fetching"))
@@ -86,7 +86,6 @@ window.onload = function()
                                         console.log("There was an error");
                                         console.log(error);
                                     });
-                                
                                 event.preventDefault();
                                 //code for filter of table issues
                             });
@@ -105,8 +104,7 @@ window.onload = function()
             else if(link_source=="user.php")
             {
                 //how do I check if user is the administrator
-                //diable link if not the administrator
-                // Will be done via PHP/MySQL
+                //disable link if not the administrator?? Will be done via PHP/MySQL
                 fetch("user.php")
                     .then(console.log("Fetching"))
                     .then(response => response.text())
@@ -195,7 +193,6 @@ window.onload = function()
                 fetch("logout.php")
                     .then(console.log("Fetching"))
                     .then(response => response.text())
-                    //.then(data => contentbox.innerHTML = data)
                     .then(data => document.getElementsByTagName("body")[0].innerHTML = data)
                     .then(console.log("Fetch complete"))
                     .catch(error => 
