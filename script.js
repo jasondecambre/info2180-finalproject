@@ -32,7 +32,8 @@ window.onload = function()
                             var link_issue = document.getElementById('issue');
                             link_issue.click();
                         });
-                        var description_links = contentbox.getElementsByTagName("a");
+                        var tablebox = contentbox.getElementsByTagName("div")[2];
+                        var description_links = tablebox.getElementsByTagName("a");
                         Array.from(description_links).forEach(function (description_link)
                         {
                             description_link.addEventListener("click", function(event)
@@ -72,13 +73,14 @@ window.onload = function()
                         {
                             filter.addEventListener("click", function(event)
                             {
-                                //Fetch the homepage or the table data file based on each filterwill need to check source
+                                //Fetch the homepage or the table data file based on each filter will need to check source
                                 // Is status in the table a button of coloured cell
                                 console.log(event.target.id);
                                 fetch(`filename.php?filter=${event.target.id}`)
                                     .then(console.log("Fetching"))
                                     .then(response => response.text())
-                                    .then(data => contentbox.innerHTML = data)
+                                    .then(data => tablebox.innerHTML = data)
+                                    .then(console.log("Fetching complete"))
                                     .catch(error => 
                                     {
                                         console.log("There was an error");
@@ -108,37 +110,42 @@ window.onload = function()
                 fetch("user.php")
                     .then(console.log("Fetching"))
                     .then(response => response.text())
-                    .then(data => contentbox.innerHTML = data)
+                    .then(data => 
+                    {
+                        contentbox.innerHTML = data;
+                        var form = contentbox.getElementsByTagName("form")[0];
+                        form.addEventListener('submit', function (event) 
+                        {
+                            event.preventDefault();
+                            var firstname = document.getElementById("fname").value.trim();
+                            var lastname = document.getElementById("lname").value.trim();
+                            var password = document.getElementById("password").value.trim();
+                            var email = document.getElementById("email").value.trim();
+                            if (isEmpty(firstname) || isEmpty(lastname) || isEmpty(password) || isEmpty(email))
+                            {
+                                document.getElementById("new-user-message").innerText = "Please complete the form before submitting.";
+                            }
+                            else
+                            {
+                                if(checkLogin(email, password))
+                                {
+                                    console.log("User information added.");
+                                    document.getElementById("new-user-message").innerText = "Submitted";
+                                    form.reset();
+                                }
+                                else
+                                {
+                                    event.preventDefault();
+                                }
+                            }                    
+                        });
+                    })
                     .then(console.log("Fetch complete"))
                     .catch(error => 
                     {
                         console.log("There was an error");
                         console.log(error);
                     });
-                var form = contentbox.getElementById("new-user-form");
-                form.addEventListener('submit', function (element) 
-                {
-                    var firstname = form.getElementById("fname").value.trim();
-                    var lastname = form.getElementById("lname").value.trim();
-                    var password = form.getElementById("password").value.trim();
-                    var email = form.getElementById("email").value.trim();
-                    if (isEmpty(firstname) || isEmpty(lastname) || isEmpty(password) || isEmpty(email))
-                    {
-                        myform.getElementById("mew-user-message").innertext = "Please complete the form before submitting.";
-                        element.preventDefault();
-                    }
-                    else
-                    {
-                        if(checkLogin(email, password))
-                        {
-                            console.log("User information added.");
-                        }
-                        else
-                        {
-                            element.preventDefault();
-                        }
-                    }                    
-                });
                 console.log("Add User page loaded");
             }
             else if (link_source=="create.php")
@@ -150,22 +157,28 @@ window.onload = function()
                     {
                         contentbox.innerHTML = data;
                         var form = contentbox.getElementsByTagName("form")[0];
-                        form.addEventListener('submit', function (element) 
+                        console.log(form);
+                        console.log(form.getElementsByTagName("button")[0]);
+                        form.addEventListener('submit', function (event) 
                         {
                             //How do we update AssignedTo with list of all current users
-                            var title = form.getElementById("title").value.trim();
-                            var description = form.getElementById("description").value.trim();
-                            var assignedTo = form.getElementById("").value
-                            var type = form.getElementById("assigned").value;
-                            var priority = form.getElementById("priority").value;
+                            event.preventDefault();
+                            var title = form.getElementsByTagName("input")[0].value.trim();
+                            var description = form.getElementsByTagName("textarea")[0].value.trim();
+                            var assignedTo = form.getElementsByTagName("select")[0].value;
+                            var type = form.getElementsByTagName("select")[1].value;
+                            var priority = form.getElementsByTagName("select")[2].value;
                             if (isEmpty(title) || isEmpty(description) || isEmpty(assignedTo) || isEmpty(type) || isEmpty(priority))
                             {
-                                myform.getElementById("create-issue-message").innertext = "Please complete the form before submitting.";
-                                event.preventDefault();
+
+                                document.getElementById("create-issue-message").innerText = "Please complete the form before submitting.";
                             }
                             else
                             {
                                 console.log("New Issue Added");
+                                document.getElementById("create-issue-message").innerText = "Submitted";
+                                console.log("Reseting input fields");
+                                form.reset();
                             }        
                         });
                     })
@@ -233,13 +246,17 @@ function checkLogin(email, password)
         }
         else
         {
-            console.log("Invalid password");
+            alert("Invalid password");
             return false;
         }        
     }
     else
     {
-        console.log("Invalid email");
+        alert("Invalid email");
         return false;
     }    
+}
+function isEmpty(string)
+{
+    return string.length == 0;
 }
