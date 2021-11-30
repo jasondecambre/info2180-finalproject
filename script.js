@@ -8,7 +8,6 @@ window.onload = function()
     //console.log(navigation);
     var anchorlist = navigation.getElementsByTagName("a");
     console.log(anchorlist);
-    //console.log(anchorlist[0]);
     Array.from(anchorlist).forEach(function (anchor)
     {
         anchor.addEventListener("click", function(event)
@@ -22,91 +21,83 @@ window.onload = function()
                 fetch("home.php")
                     .then(console.log("Fetching"))
                     .then(response => response.text())
-                    .then(data => contentbox.innerHTML = data)
+                    .then(data => 
+                    {
+                        contentbox.innerHTML = data;
+                        //console.log(contentbox);
+                        var button_issue = contentbox.getElementsByTagName("div")[0].getElementsByTagName("button")[0];
+                        //console.log(button_issue);
+                        button_issue.addEventListener("click", function()
+                        {
+                            var link_issue = document.getElementById('issue');
+                            link_issue.click();
+                        });
+                        var description_links = contentbox.getElementsByTagName("a");
+                        Array.from(description_links).forEach(function (description_link)
+                        {
+                            description_link.addEventListener("click", function(event)
+                            {
+                                fetch("description.php")
+                                    .then(console.log("Fetching"))
+                                    .then(response => response.text())
+                                    .then(data => contentbox.innerHTML = data)
+                                    .catch(error => 
+                                    {
+                                        console.log("There was an error");
+                                        console.log(error);
+                                    });
+                                var description_buttons = contentbox.getElementsByTagName("button");
+                                var markedClosed = description_buttons[0];
+                                var markedInProgress = description_buttons[1];
+                                markedClosed.addEventListener("click", function()
+                                {
+                                    const date = new Date();
+                                //date.toDateString();
+                                // Update issue in database
+                                    console.log("Marked as close");
+                                });
+                                markedInProgress.addEventListener("click", function()
+                                {
+                                    const date = new Date();
+                                //date.toDateString();
+                                //Update issue in database
+                                    console.log("Marked as in progress");
+                                });
+                                event.preventDefault();
+                            });
+                        });
+                        var filterdiv = document.getElementById("filterBy");
+                        var filteropt = filterdiv.getElementsByTagName("button");
+                        Array.from(filteropt).forEach(function (filter)
+                        {
+                            filter.addEventListener("click", function(event)
+                            {
+                                //Fetch the homepage or the table data file based on each filterwill need to check source
+                                // Is status in the table a button of coloured cell
+                                console.log(event.target.id);
+                                fetch(`filename.php?filter=${event.target.id}`)
+                                    .then(console.log("Fetching"))
+                                    .then(response => response.text())
+                                    .then(data => contentbox.innerHTML = data)
+                                    .catch(error => 
+                                    {
+                                        console.log("There was an error");
+                                        console.log(error);
+                                    });
+                                
+                                event.preventDefault();
+                                //code for filter of table issues
+                            });
+                        });
+                    })
                     .then(console.log("Fetch complete"))
                     .catch(error => 
                     {
                         console.log("There was an error");
                         console.log(error);
                     });
-                //contentbox = document.getElementById("content");
-                console.log(contentbox);
-                var contentbox_divcollection = contentbox.getElementsByTagName("div");
-                console.log("contentbox_divcollection")
-                console.log(contentbox_divcollection);
-                var top1 = contentbox_divcollection[0];
-                console.log("top1");
-                console.log(top1);
-                var top2 = document.getElementById("top");
-                console.log("top2")
-                console.log(top2);
-                /*var button_issue = top[0].getElementsByTagName("button")[0];
-                var button_issue = top.getElementsByTagName("button")[0];
-                console.log(button_issue);
-                button_issue.addEventListener("click", function()
-                {
-                    var link_issue = document.getElementById('issue');
-                    link_issue.click();
-                });
-                var description_links = contentbox.getElementsByTagName("a");
-                Array.from(description_links).forEach(function (description_link)
-                {
-                    description_link.addEventListener("click", function(event)
-                    {
-                        fetch("description.php")
-                            .then(console.log("Fetching"))
-                            .then(response => response.text())
-                            .then(data => contentbox.innerHTML = data)
-                            .catch(error => 
-                            {
-                                console.log("There was an error");
-                                console.log(error);
-                            });
-                        var description_buttons = contentbox.getElementsByTagName("button");
-                        var markedClosed = description_buttons[0];
-                        var markedInProgress = description_buttons[1];
-                        markedClosed.addEventListener("click", function()
-                        {
-                            const date = new Date();
-                           //date.toDateString();
-                           // Update issue in database
-                            console.log("Marked as close");
-                        });
-                        markedInProgress.addEventListener("click", function()
-                        {
-                            const date = new Date();
-                           //date.toDateString();
-                           //Update issue in database
-                            console.log("Marked as in progress");
-                        });
-                        event.preventDefault();
-                    });
-                });*/
                 navigation.classList.remove("hidden");
-                console.log("Navigation shown")
-                /*var filterdiv = documents.getElementById("filters");
-                var filteropt = filterdiv.getElementsByTagName("button");
-                Array.from(filteropt).forEach(function (filter)
-                {
-                    filter.addEventListener("click", function(event)
-                    {
-                        //Fetch the homepage or the table data file based on each filterwill need to check source
-                        // Is status in the table a button of coloured cell
-                        console.log(event.target.id);
-                        fetch(`filename.php?filter=${event.target.id}`)
-                            .then(console.log("Fetching"))
-                            .then(response => response.text())
-                            .then(data => contentbox.innerHTML = data)
-                            .catch(error => 
-                            {
-                                console.log("There was an error");
-                                console.log(error);
-                            });
-                        
-                        event.preventDefault();
-                        //code for filter of table issues
-                    });
-                });*/
+                console.log("Navigation shown");
                 console.log("Home page loaded");
             }
             else if(link_source=="user.php")
@@ -155,32 +146,35 @@ window.onload = function()
                 fetch("create.php")
                     .then(console.log("Fetching"))
                     .then(response => response.text())
-                    .then(data => contentbox.innerHTML = data)
+                    .then(data => 
+                    {
+                        contentbox.innerHTML = data;
+                        var form = contentbox.getElementsByTagName("form")[0];
+                        form.addEventListener('submit', function (element) 
+                        {
+                            //How do we update AssignedTo with list of all current users
+                            var title = form.getElementById("title").value.trim();
+                            var description = form.getElementById("description").value.trim();
+                            var assignedTo = form.getElementById("").value
+                            var type = form.getElementById("assigned").value;
+                            var priority = form.getElementById("priority").value;
+                            if (isEmpty(title) || isEmpty(description) || isEmpty(assignedTo) || isEmpty(type) || isEmpty(priority))
+                            {
+                                myform.getElementById("create-issue-message").innertext = "Please complete the form before submitting.";
+                                event.preventDefault();
+                            }
+                            else
+                            {
+                                console.log("New Issue Added");
+                            }        
+                        });
+                    })
                     .then(console.log("Fetch complete"))
                     .catch(error => 
                     {
                         console.log("There was an error");
                         console.log(error);
                     });
-                var form = contentbox.getElementById("create-issue-form")
-                form.addEventListener('submit', function (element) 
-                {
-                    //How do we update AssignedTo with list of all current users
-                    var title = form.getElementById("title").value.trim();
-                    var description = form.getElementById("description").value.trim();
-                    var assignedTo = form.getElementById("").value
-                    var type = form.getElementById("assigned").value;
-                    var priority = form.getElementById("priority").value;
-                    if (isEmpty(title) || isEmpty(description) || isEmpty(assignedTo) || isEmpty(type) || isEmpty(priority))
-                    {
-                        myform.getElementById("create-issue-message").innertext = "Please complete the form before submitting.";
-                        element.preventDefault();
-                    }
-                    else
-                    {
-                        console.log("New Issue Added");
-                    }        
-                });
                 console.log("Create Issue page loaded");
             }
             else if (link_source=="logout.php")
