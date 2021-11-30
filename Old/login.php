@@ -38,7 +38,7 @@ if($pw['password'] == $password){
         $_SESSION['lastname']=$result['lastname'];
         $_SESSION['user_id']=$result['id'];
         if(isset($_SESSION['logined_user'])){
-        header("Location:home.php" );
+        header("Location:dashboard.php" );
         }
     }
 }else{

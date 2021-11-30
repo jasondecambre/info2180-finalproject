@@ -1,10 +1,6 @@
 <?php
-if (!isset($_SESSION))
-  {
-    session_start();
-  }
-    session_start();
-    $_SESSION = array();
-    session_destroy();
-        header("Location: index.php");
+session_start();
+unset($_SESSION["id"]);
+unset($_SESSION["name"]);
+header("Location:index.php"); 
 ?>
