@@ -6,7 +6,7 @@
         $lname= filter_input(INPUT_POST,"lastname",FILTER_SANITIZE_STRING); 
         $pswrd= filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING);
         $email= filter_input(INPUT_POST,"email",FILTER_SANITIZE_EMAIL); 
-        $email= filter_var($email,FILTER_VALIDATE_EMAIL);
+        $email= filter_var($email,FILTER_VALIDATE_EMAIL); //extra step for validation
         $insert=true;
         $inputs=array($fname,$lname,$pswrd,$email);
         // foreach ($inputs as $i):

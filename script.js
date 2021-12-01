@@ -8,6 +8,7 @@ window.onload = function()
     //console.log(navigation);
     var anchorlist = navigation.getElementsByTagName("a");
     console.log(anchorlist);
+    var link_source;
     Array.from(anchorlist).forEach(function (anchor)
     {
         anchor.addEventListener("click", function(event)
@@ -67,29 +68,31 @@ window.onload = function()
                                 event.preventDefault();
                             });
                         });
+                       
                         var filterdiv = document.getElementById("filterBy");
                         var filteropt = filterdiv.getElementsByTagName("button");
-                        Array.from(filteropt).forEach(function (filter)
-                        {
-                            filter.addEventListener("click", function(event)
-                            {
-                                //Fetch the table data file based on each filter will need to check source
-                                // Is status in the table a button of coloured cell?
-                                console.log(event.target.id);
-                                fetch(`filename.php?filter=${event.target.id}`)
-                                    .then(console.log("Fetching"))
-                                    .then(response => response.text())
-                                    .then(data => tablebox.innerHTML = data)
-                                    .then(console.log("Fetching complete"))
-                                    .catch(error => 
-                                    {
-                                        console.log("There was an error");
-                                        console.log(error);
-                                    });
-                                event.preventDefault();
-                                //code for filter of table issues
-                            });
-                        });
+                        // Array.from(filteropt).forEach(function (filter)
+                        // {
+                        //     filter.addEventListener("click", function(event)
+                        //     {
+                        //         //Fetch the table data file based on each filter will need to check source
+                        //         // Is status in the table a button of coloured cell?
+                        //         console.log(event.target.id);
+                        //         fetch(`home.php?filter=${event.target.id}`)
+                        //             console.log("MY BUTTON CLICKED")
+                        //             .then(console.log("Fetching"))
+                        //             .then(response => response.text())
+                        //             .then(data => tablebox.innerHTML = data)
+                        //             .then(console.log("Fetching complete"))
+                        //             .catch(error => 
+                        //             {
+                        //                 console.log("There was an error");
+                        //                 console.log(error);
+                        //             });
+                        //         event.preventDefault();
+                        //         //code for filter of table issues
+                        //     });
+                        // });
                     })
                     .then(console.log("Fetch complete"))
                     .catch(error => 
@@ -207,9 +210,10 @@ window.onload = function()
             event.preventDefault();
         });
     });
+    if (link_source=="index.php"){
     var link_home = document.getElementById("home"); 
     var loginbutton = document.getElementById("login-submit");
-    loginbutton.addEventListener("click", function()
+    loginbutton.addEventListener("click", function(event)
     {
         event.preventDefault();
         var email = document.getElementById("email").value.trim();
@@ -227,7 +231,7 @@ window.onload = function()
             message.innerText="Invalid Login."
             event.preventDefault();
         }
-    });
+    });}
 }
 function checkLogin(email, password)
 {

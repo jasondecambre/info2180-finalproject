@@ -46,8 +46,8 @@
                     echo "<option>$row[firstname] $row[lastname]</option>";                  
                     } 
             }
-            catch(PDOException $pe) {
-                die("Could not connect to the database $dbname :" . $pe->getMessage());
+            catch(PDOException $pdoe) {
+                die("Could not connect to the database $dbname :" . $pdoe->getMessage());
             }                           
                 
             ?>  </option> 

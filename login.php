@@ -65,7 +65,9 @@ if(password_verify($password,$pw2)){
 </nav> -->
 
 <main>
-<h3 id=loginerror'>Login Failed. Check your email address and password</h3>
+<h3 id=loginerror'>Uh oh! Seems like your login failed.</h3>
+<br>
+<p>Check your email address and password.</p>
 <form action="index.php">
     <br>
     <button>Try again</button>

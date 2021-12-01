@@ -39,7 +39,7 @@ INSERT INTO users (id, firstname, lastname, password, email, date_joined) VALUES
 DROP TABLE IF EXISTS issues;
 CREATE TABLE issues(
   id INT UNSIGNED auto_increment,
-  title VARCHAR(32) DEFAULT NULL,
+  title VARCHAR(64) DEFAULT NULL,
   description TEXT(256) DEFAULT NULL,
   type VARCHAR(32) DEFAULT NULL,
   priority VARCHAR(32) DEFAULT NULL,
@@ -51,10 +51,10 @@ CREATE TABLE issues(
   primary key(id)
 
 );
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#100 XSS Vulnerability in Add User Form', 'The Submit button does not work when clicked', 'Bug', 'Major', 'Open', 2, 0001, SYSDATE(), SYSDATE());
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#23 Location Service isnt working', 'I cannot locate my issue', 'Bug', 'Critical', 'Open', 3, 0001, SYSDATE(), SYSDATE());
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#16 Setup Logger', 'Trouble logging into my account after creating one', 'Proposal', 'Minor', 'Closed', 5, 0001, SYSDATE(), SYSDATE());
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#50 Create API Documentation', 'API Documentation needs to be better', 'Proposal', 'Critical', 'In Progress', 7, 0001, SYSDATE(), SYSDATE());
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#24 Allow results to be sorted', 'Sort the results in either asce or desc order', 'Proposal', 'Major', 'In Progress', 6, 0001, SYSDATE(), SYSDATE());
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#12 Random text flashing on screen', 'When the submit button is clicked random text is displayed on the screen', 'Bug', 'Minor', 'Closed', 4, 0001, SYSDATE(), SYSDATE());
-INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('#67 Add a button to create new users without admin credentials', 'Allow me to enter my own stuff', 'Task', 'Critical', 'In Progress', 5, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('XSS Vulnerability in Add User Form', 'The Submit button does not work when clicked', 'Bug', 'Major', 'Open', 2, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('Location Service isnt working', 'I cannot locate my issue', 'Bug', 'Critical', 'Open', 3, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('Setup Logger', 'Trouble logging into my account after creating one', 'Proposal', 'Minor', 'Closed', 5, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('Create API Documentation', 'API Documentation needs to be better', 'Proposal', 'Critical', 'In Progress', 7, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('Allow results to be sorted', 'Sort the results in either asce or desc order', 'Proposal', 'Major', 'In Progress', 6, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('Random text flashing on screen', 'When the submit button is clicked random text is displayed on the screen', 'Bug', 'Minor', 'Closed', 4, 0001, SYSDATE(), SYSDATE());
+INSERT INTO issues (title, description, type, priority, status, assigned_to, created_by, created, updated) VALUES ('Add a button to create new users without admin credentials', 'Allow me to enter my own stuff', 'Task', 'Critical', 'In Progress', 5, 0001, SYSDATE(), SYSDATE());
