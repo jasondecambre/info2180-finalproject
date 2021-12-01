@@ -5,15 +5,17 @@ try{
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $title=filter_input(INPUT_GET,"title",FILTER_SANITIZE_STRING); 
     $description= filter_input(INPUT_GET,"description",FILTER_SANITIZE_STRING); 
-    $assignto= filter_input(INPUT_GET,"assignedto",FILTER_SANITIZE_STRING);
+    $assignto= filter_input(INPUT_GET,"assigned",FILTER_SANITIZE_STRING);
+    echo $assignto;
     $type= filter_input(INPUT_GET,"type",FILTER_SANITIZE_STRING); 
     $priority= filter_input(INPUT_GET,"priority",FILTER_SANITIZE_STRING);
     $status="OPEN";
     $insert=true;
     $sessionid =$_SESSION['user_id'];
     if ($insert){
-        $myids = $conn->query("SELECT id FROM users WHERE CONCAT(firstname,' ',lastname)='$assignto' ");
+        $myids = $conn->query("SELECT id FROM users WHERE CONCAT(firstname,' ',lastname)='$assignto'");
         $myidsfinals = $myids->fetch(PDO::FETCH_ASSOC);
+        
         echo $myidsfinals;
         if(isset($myidsfinals)){
             $assignid=$myidsfinals['id'];
@@ -28,7 +30,8 @@ try{
         $stmt->bindParam(":createid", $sessionid);
         $stmt->bindParam(":assignid", $assignid);
         $stmt->execute();
-        echo"Issue successfully inserted.";
+        //echo"Issue successfully inserted.";
+        header("Location:home.php" );
     }
 }catch(PDOException $pe) {
     die("Could not connect to the database $dbname :" . $pe->getMessage());

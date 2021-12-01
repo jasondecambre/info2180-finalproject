@@ -53,7 +53,7 @@ $creatornm= $findcreator->fetch(PDO::FETCH_ASSOC);
             <div class ="displayjobdetails">
                 <div class = "issuedetails">
                     <h3 id="issue-#" value=<?php echo $issuedetails["id"]?>>Issue #<?php echo $issuedetails["id"]?></h3>
-                    <p id="issue-des"><?php echo $issuedetails["_description"]?> </p>
+                    <p id="issue-des"><?php echo $issuedetails["description"]?> </p>
                     <p id="issue-create"> > Issue created on <?php echo $issuedetails["created"]?> by <?php echo $creatornm['firstname']." ".$creatornm['lastname']; ?> </p>
                     <p id="issue-update"> > Issue updated on <?php echo $issuedetails["updated"]?></p>
                 </div>
@@ -65,13 +65,13 @@ $creatornm= $findcreator->fetch(PDO::FETCH_ASSOC);
                         <p><?php echo $name['firstname']." ".$name['lastname']; ?> </p>
 
                         <h3> Type </h3>
-                        <p><?php echo $issuedetails["_type"] ?> </p>
+                        <p><?php echo $issuedetails["type"] ?> </p>
 
                         <h3> Priority </h3>
-                        <p><?php echo $issuedetails["_priority"] ?> </p>
+                        <p><?php echo $issuedetails["priority"] ?> </p>
 
                         <h3> Status</h3>
-                        <p><?php echo $issuedetails["_status"] ?></p>
+                        <p><?php echo $issuedetails["status"] ?></p>
                     </div><br>
                 
                     <div class = "buttons">

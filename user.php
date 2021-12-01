@@ -15,17 +15,17 @@
 </nav>
 
 <main>
-    <form method="POST" id="new-user-form">
+    <form method="POST" id="new-user-form" action="insertuser.php">
         <h1>New User</h1>
         <br>
         <label for="fname"> Firstname</label>
         <br>
-        <input id="fname" type="text" name="fame" class="input"/> 
+        <input id="fname" type="text" name="firstname" class="input"/> 
         <br>
         <br> 
         <label for="lname"> Lastname</label> 
         <br>
-        <input id="lname" type="text" name="lame" class="input"/> 
+        <input id="lname" type="text" name="lastname" class="input"/> 
         <br>
         <br>
         <label for="password"> Password</label> 

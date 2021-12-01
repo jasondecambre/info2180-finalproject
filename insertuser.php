@@ -9,16 +9,16 @@
         $email= filter_var($email,FILTER_VALIDATE_EMAIL);
         $insert=true;
         $inputs=array($fname,$lname,$pswrd,$email);
-        foreach ($inputs as $i):
+        // foreach ($inputs as $i):
         //     if(!preg_match("/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$/",$i) or $i==$pswrd){
         //         echo "<br>not match";
         //         $insert=false;
         //     }
-            if (empty($i)){
-                echo "empty input";
-                $insert=false; 
-            }
-        endforeach;
+        //     if (empty($i)){
+        //         echo "empty input";
+        //         $insert=false; 
+        //     }
+        // endforeach;
 
         $hashpassword=password_hash($pswrd,PASSWORD_DEFAULT);
         if ($insert){
@@ -31,7 +31,8 @@
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->execute();
 
-            echo"<br> User successfully inserted";
+            //echo"<br> User successfully inserted";
+            header("Location:home.php" );
         }
 
     } catch(PDOException $pe) {

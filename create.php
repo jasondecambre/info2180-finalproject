@@ -15,7 +15,7 @@
 </nav>
 
 <main>
-    <form id="create-issue-form">
+    <form id="create-issue-form" action = "addissue.php">
     <h1>Create Issue</h1>  
         <br>
         <label for="title">Title</label>

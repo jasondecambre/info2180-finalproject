@@ -8,12 +8,12 @@
 
 <header>BugMe Issue Tracker</header>
 
-<nav id="left-sidebar" class="nav-con">
+<!-- <nav id="left-sidebar" class="nav-con">
     <b><a href="home.php" id="home"><i class="fa fa-home fa-fw"></i> Home</a></b>
     <b><a href="user.php" id="user"><i class="fa fa-user-plus fa-fw"></i > Add User</a></b>
     <b><a href="create.php" id="issue"><i class="fa fa-plus-circle fa-fw"></i> New Issue</a></b>
     <b><a href="logout.php" id="logout"><i class="fa fa-power-off fa-fw"></i> Logout</a></b>
-</nav>
+</nav> -->
 
 <main>
   <div id="content">
