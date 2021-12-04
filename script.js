@@ -2,12 +2,14 @@
 
 window.onload = function()
 {
-    console.log("Window loaded");
+    console.log("Window loaded 2");
     var contentbox = document.getElementById("content")
     var navigation = document.getElementById("left-sidebar");
-    //console.log(navigation);
+    console.log(navigation);
+    console.log(contentbox);
     var anchorlist = navigation.getElementsByTagName("a");
     console.log(anchorlist);
+    var link_source;
     Array.from(anchorlist).forEach(function (anchor)
     {
         anchor.addEventListener("click", function(event)
@@ -67,29 +69,31 @@ window.onload = function()
                                 event.preventDefault();
                             });
                         });
+                       
                         var filterdiv = document.getElementById("filterBy");
                         var filteropt = filterdiv.getElementsByTagName("button");
-                        Array.from(filteropt).forEach(function (filter)
-                        {
-                            filter.addEventListener("click", function(event)
-                            {
-                                //Fetch the table data file based on each filter will need to check source
-                                // Is status in the table a button of coloured cell?
-                                console.log(event.target.id);
-                                fetch(`filename.php?filter=${event.target.id}`)
-                                    .then(console.log("Fetching"))
-                                    .then(response => response.text())
-                                    .then(data => tablebox.innerHTML = data)
-                                    .then(console.log("Fetching complete"))
-                                    .catch(error => 
-                                    {
-                                        console.log("There was an error");
-                                        console.log(error);
-                                    });
-                                event.preventDefault();
-                                //code for filter of table issues
-                            });
-                        });
+                        // Array.from(filteropt).forEach(function (filter)
+                        // {
+                        //     filter.addEventListener("click", function(event)
+                        //     {
+                        //         //Fetch the table data file based on each filter will need to check source
+                        //         // Is status in the table a button of coloured cell?
+                        //         console.log(event.target.id);
+                        //         fetch(`home.php?filter=${event.target.id}`)
+                        //             console.log("MY BUTTON CLICKED")
+                        //             .then(console.log("Fetching"))
+                        //             .then(response => response.text())
+                        //             .then(data => tablebox.innerHTML = data)
+                        //             .then(console.log("Fetching complete"))
+                        //             .catch(error => 
+                        //             {
+                        //                 console.log("There was an error");
+                        //                 console.log(error);
+                        //             });
+                        //         event.preventDefault();
+                        //         //code for filter of table issues
+                        //     });
+                        // });
                     })
                     .then(console.log("Fetch complete"))
                     .catch(error => 
@@ -207,32 +211,34 @@ window.onload = function()
             event.preventDefault();
         });
     });
+    if (link_source=="index.php"){
     var link_home = document.getElementById("home"); 
     var loginbutton = document.getElementById("login-submit");
-    loginbutton.addEventListener("click", function()
+    loginbutton.addEventListener("click", function(event)
     {
         event.preventDefault();
         var email = document.getElementById("email").value.trim();
         var password = document.getElementById("password").value.trim();
-        if(checkLogin(email, password))
-        {
-            // How does php check if this is a valid user?
-            console.log("User login valid.");
-            link_home.click();
-        }
-        else
+        if(isEmpty(email) || isEmpty(password))
         {
             console.log("User login not valid.");
             let message=document.getElementById("login-form-message");
             message.innerText="Invalid Login."
             event.preventDefault();
+            
         }
-    });
+        else
+        {
+            // How does php check if this is a valid user?
+            console.log("User login valid.");
+            link_home.click();
+        }
+    });}
 }
 function checkLogin(email, password)
 {
     var emailexpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    var passwordexpression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    var passwordexpression = /^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (emailexpression.test(email))
     {
         console.log("Valid email");
